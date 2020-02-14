@@ -1,12 +1,12 @@
 
-def call(String gitbranch, String giturl) 	{
+def call(Map templateParams) 	{
  
-    checkout([$class: 'GitSCM', branches: [[name: gitbranch]], 
+    checkout([$class: 'GitSCM', branches: [[name: templateParams.gitbranch]], 
 doGenerateSubmoduleConfigurations: false, 
 extensions: [], 
 submoduleCfg: [], 
 userRemoteConfigs: [[credentialsId: 'gitUser', 
-url: giturl ]]])
+url: templateParams.giturl ]]])
   }
 
 
