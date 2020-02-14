@@ -1,7 +1,12 @@
 
-def call() {
+def call(string gitbranch, string giturl) 	{
  
-    checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'gitUser', url: 'https://github.com/ArunStarworks/Helloworld.git']]])
+    checkout([$class: 'GitSCM', branches: [[name: gitbranch]], 
+doGenerateSubmoduleConfigurations: false, 
+extensions: [], 
+submoduleCfg: [], 
+userRemoteConfigs: [[credentialsId: 'gitUser', 
+url: giturl ]]])
   }
 
 
