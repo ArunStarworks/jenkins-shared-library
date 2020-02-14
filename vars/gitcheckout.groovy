@@ -1,5 +1,5 @@
 
-def call(string gitbranch, string giturl) 	{
+def call(String gitbranch, String giturl) 	{
  
     checkout([$class: 'GitSCM', branches: [[name: gitbranch]], 
 doGenerateSubmoduleConfigurations: false, 
