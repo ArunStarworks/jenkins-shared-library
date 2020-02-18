@@ -4,7 +4,7 @@ def call(Map templateParams)
 {
  
 try{
-checkout([$class: '', branches: [[name: templateParams.gitbranch]], 
+checkout([$class: 'GitSCM', branches: [[name: templateParams.gitbranch]], 
 doGenerateSubmoduleConfigurations: false, 
 extensions: [], 
 submoduleCfg: [], 
