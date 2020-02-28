@@ -1,4 +1,6 @@
-import com.company.selenium.Browserversion
+#!/usr/bin/groovy
+
+import com.company.selenium.Browserversion;
 
 def call(Map templateParams, Browserversion bchrome) 	
 
