@@ -1,12 +1,12 @@
 #!/usr/bin/groovy
 
-import com.company.selenium.Browserversion;
 
-def call(Map templateParams, Browserversion bchrome) 	
+
+def call(Map templateParams) 	
 
 {
  
-echo bchrome.value()
+
 try{
 checkout([$class: 'GitSCM', branches: [[name: templateParams.gitbranch]], 
 doGenerateSubmoduleConfigurations: false, 
