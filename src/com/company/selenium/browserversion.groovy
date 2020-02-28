@@ -1,10 +1,9 @@
-#!/usr/bin/groovy
 
 package com.company.selenium
 
 enum browserversion {
 
-Firefox("firefox"), Chrome("chrome"), None("none")
+Firefox("hello"), Chrome("hi"), None("none")
 
 browserversion(String value)
 {
