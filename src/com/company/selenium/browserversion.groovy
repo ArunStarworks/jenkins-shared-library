@@ -1,11 +1,11 @@
 
 package com.company.selenium
 
-enum browserversion {
+enum Browserversion {
 
 Firefox("hello"), Chrome("hi"), None("none")
 
-browserversion(String value)
+Browserversion(String value)
 {
 this.value  = value
 }

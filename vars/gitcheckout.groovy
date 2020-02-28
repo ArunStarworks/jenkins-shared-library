@@ -1,8 +1,10 @@
+import com.company.selenium.Browserversion
 
-def call(Map templateParams) 	
+def call(Map templateParams, Browserversion bchrome) 	
 
 {
  
+echo bchrome.value()
 try{
 checkout([$class: 'GitSCM', branches: [[name: templateParams.gitbranch]], 
 doGenerateSubmoduleConfigurations: false, 
