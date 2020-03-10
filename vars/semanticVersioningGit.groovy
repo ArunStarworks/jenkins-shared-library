@@ -9,7 +9,7 @@
 * @param sshAgentId - The SSH key credential associated with the user to log back into Git to increment the tag in Bitbucket
 */
  
-import com.tjx.utilities.IncrementType
+import com.company.utilities.IncrementType
  
 def call (IncrementType incrementType, String gitUserName, String gitUserEmail, String sshAgentId){
  
