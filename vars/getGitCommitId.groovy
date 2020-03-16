@@ -2,7 +2,7 @@
 
 def call (String TARGET_BRANCH) {
 
-SHORT_GIT_COMMIT_ID = bat (
+SHORT_GIT_COMMIT_ID = sh (
 script: "git rev-parse --short ${TARGET_BRANCH}",
 returnStdout: true
 ).trim()

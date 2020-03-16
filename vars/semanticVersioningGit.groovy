@@ -25,8 +25,8 @@ def call (IncrementType incrementType, String gitUserName, String gitUserEmail, 
     echo "Current Short Git Commit ID - ${SHORT_GIT_COMMIT_ID}"
  
     if( incrementType == IncrementType.MAJOR ){
-        NEW_TAG = bat (
-            script: """
+        NEW_TAG = sh (
+            script: """#!/bin/usr/bash
                     CURRENT_TAG=${CURRENT_TAG};
                     a=( \${CURRENT_TAG//./ } );
                     ((a[0]++)); export NEW_TAG="\${a[0]}.0.0";
@@ -35,8 +35,8 @@ def call (IncrementType incrementType, String gitUserName, String gitUserEmail, 
         ).trim()
     }
     else if ( incrementType == IncrementType.MINOR ){
-        NEW_TAG =bat (
-            script: """
+        NEW_TAG = sh (
+            script: """#!/bin/usr/bash
                     CURRENT_TAG=${CURRENT_TAG};
                     a=( \${CURRENT_TAG//./ } );
                     ((a[1]++)); export NEW_TAG="\${a[0]}.\${a[1]}.0";
@@ -45,8 +45,8 @@ def call (IncrementType incrementType, String gitUserName, String gitUserEmail, 
         ).trim()   
     }
     else if ( incrementType == IncrementType.PATCH ){
-        NEW_TAG = bat (
-            script: """
+        NEW_TAG = sh (
+            script: """#!/bin/usr/bash
                     CURRENT_TAG=${CURRENT_TAG};
                     a=( \${CURRENT_TAG//./ } );
                     ((a[2]++)); export NEW_TAG="\${a[0]}.\${a[1]}.\${a[2]}";
@@ -56,8 +56,8 @@ def call (IncrementType incrementType, String gitUserName, String gitUserEmail, 
     }
     else if ( incrementType == IncrementType.BUILD_NUMBER){
         if("${env.GIT_BRANCH}" =~ "PR-*"){
-            NEW_TAG = bat (
-                script: """
+            NEW_TAG = sh (
+                script: """#!/bin/usr/bash
                 CURRENT_TAG=${CURRENT_TAG};
                 a=( \${CURRENT_TAG//./ } );
                 export JIRA_TICKET_NUMBER=\$( git log \$1 | grep -Eo '([A-Z]{3,}-)([0-9]+)' | uniq | head -n 1 )
@@ -67,8 +67,8 @@ def call (IncrementType incrementType, String gitUserName, String gitUserEmail, 
             ).trim()
         }
         else {
-            NEW_TAG = bat (
-                script: """
+            NEW_TAG = sh (
+                script: """#!/bin/usr/bash
                 CURRENT_TAG=${CURRENT_TAG};
                 a=( \${CURRENT_TAG//./ } );
                 export JIRA_TICKET_NUMBER=\$( git log \$1 | grep -Eo '([A-Z]{3,}-)([0-9]+)' | uniq | head -n 1 )
@@ -80,7 +80,7 @@ def call (IncrementType incrementType, String gitUserName, String gitUserEmail, 
     }
     
     sshagent (credentials: ["${sshAgentId}"]) {
-        bat """
+        sh """#!/bin/usr/bash
           git tag ${NEW_TAG}
           GIT_SSH_COMMAND="ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no" git push --tags
         """

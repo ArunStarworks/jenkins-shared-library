@@ -4,7 +4,7 @@
 def call (String TARGET_BRANCH)
 {
 
-CURRENT_TAG = bat(
+CURRENT_TAG = sh(
 
 script: "git tag --merged ${TARGET_BRANCH}",
 returnStdout: true
